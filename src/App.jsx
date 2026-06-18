@@ -3,19 +3,14 @@ import { useSelector } from 'react-redux'
 import LandingPage from './pages/LandingPage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
+import ProtectedRoute from './component/molecules/ProtectedRoute'
 import DashboardPage from './pages/DashboardPage'
 import CreateLinkPage from './pages/CreateLinkPage'
-import NotFoundPage from './pages/NotFoundPage'
 import ProfilePage from './pages/ProfilePage'
-import MainLayout from './component/templates/MainLayout'
-
-// function ProtectedRoute({ children }) {
-//   const { token } = useSelector((state) => state.auth)
-//   return token ? children : <Navigate to="/login" replace />
-// }
+import NotFoundPage from './pages/NotFoundPage'
 
 function GuestRoute({ children }) {
-  const { token } = useSelector((state) => state.auth)
+  const token = useSelector((s) => s.auth.token)
   return !token ? children : <Navigate to="/dashboard" replace />
 }
 
@@ -26,6 +21,10 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<GuestRoute><LoginPage /></GuestRoute>} />
         <Route path="/register" element={<GuestRoute><RegisterPage /></GuestRoute>} />
+        <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
+        <Route path="/links/new" element={<ProtectedRoute><CreateLinkPage /></ProtectedRoute>} />
+        <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
+        <Route path="/links" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
