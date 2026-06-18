@@ -236,6 +236,13 @@ Halaman tertentu hanya dapat diakses oleh pengguna yang telah login menggunakan 
 ProtectedRoute
 ```
 
+### Tampilan Frontend
+<img src="./public/authLoginPage.png" width=500px/>
+<img src="./public/LandingPageHome.png" width=500px/>
+<img src="./public/DashboardPage.png" width=500px/>
+<img src="./public/NewLinkPage.png" width=500px/>
+<img src="./public/PageNotFound.png" width=500px/>
+
 ### Global State Management
 
 Redux Toolkit digunakan untuk mengelola state aplikasi seperti:
